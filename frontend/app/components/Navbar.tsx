@@ -1,4 +1,6 @@
-"use client";
+"use client"; // ✅ Fix for using useState
+
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -17,22 +19,22 @@ export default function Navbar() {
           {isOpen ? "✖" : "☰"}
         </button>
 
-        {/* Links - Shown on larger screens */}
+        {/* Desktop Navigation */}
         <ul className="hidden md:flex gap-6 text-lg">
           <li>
-            <a href="#" className="hover:underline">
+            <Link href="/" className="hover:underline">
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="hover:underline">
+            <Link href="/trends" className="hover:underline">
               Trends
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="hover:underline">
+            <Link href="/submit" className="hover:underline">
               Submit Rent
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
@@ -41,19 +43,19 @@ export default function Navbar() {
       {isOpen && (
         <ul className="flex flex-col items-center mt-4 md:hidden">
           <li className="py-2">
-            <a href="#" className="hover:underline">
+            <Link href="/" className="hover:underline">
               Home
-            </a>
+            </Link>
           </li>
           <li className="py-2">
-            <a href="#" className="hover:underline">
+            <Link href="/trends" className="hover:underline">
               Trends
-            </a>
+            </Link>
           </li>
           <li className="py-2">
-            <a href="#" className="hover:underline">
+            <Link href="/submit" className="hover:underline">
               Submit Rent
-            </a>
+            </Link>
           </li>
         </ul>
       )}
