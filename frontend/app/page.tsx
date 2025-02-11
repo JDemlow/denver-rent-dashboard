@@ -1,42 +1,27 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground p-8">
+    <main className="min-h-screen bg-background text-foreground p-6 sm:p-8">
       {/* Navbar */}
-      <nav className="flex justify-between items-center py-4 border-b border-gray-300">
-        <h1 className="text-2xl font-bold">Denver Rent Dashboard</h1>
-        <ul className="flex gap-6 text-lg">
-          <li>
-            <a href="#" className="hover:underline">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              Trends
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              Submit Rent
-            </a>
-          </li>
-        </ul>
+      <nav className="w-full border-b border-gray-300 p-4 bg-white dark:bg-gray-900">
+        <h1 className="text-xl font-bold text-center sm:text-left">
+          Denver Rent Dashboard
+        </h1>
       </nav>
 
       {/* Header */}
-      <header className="mt-8 text-center">
-        <h2 className="text-4xl font-semibold">
+      <header className="mt-6 text-center sm:mt-8">
+        <h2 className="text-3xl sm:text-4xl font-semibold">
           Track Denver&apos;s Rental Market
         </h2>
-        <p className="text-lg text-gray-600 mt-2">
+        <p className="text-md sm:text-lg text-gray-600 mt-2">
           View real-time rent trends and submit your own data.
         </p>
       </header>
 
       {/* Content Area */}
-      <section className="mt-12 flex flex-col items-center">
-        <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl">
-          <h3 className="text-2xl font-bold mb-4">
+      <section className="mt-10 flex flex-col items-center">
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md w-full max-w-md sm:max-w-4xl">
+          <h3 className="text-xl sm:text-2xl font-bold mb-4">
             Coming Soon: Interactive Rent Data
           </h3>
           <p className="text-gray-700">
