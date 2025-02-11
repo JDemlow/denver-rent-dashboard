@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   LineChart,
   Line,
@@ -48,7 +49,12 @@ export default function RentTrendsChart() {
   );
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl">
+    <motion.div
+      className="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <h3 className="text-xl font-bold mb-4 text-center">
         Rent Prices by Neighborhood
       </h3>
@@ -56,7 +62,7 @@ export default function RentTrendsChart() {
       {/* Dropdown to select neighborhood */}
       <div className="mb-4 flex justify-center">
         <select
-          className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500"
+          className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-emerald-500 transition-all duration-200 hover:shadow-lg"
           value={selectedNeighborhood}
           onChange={(e) => setSelectedNeighborhood(e.target.value)}
         >
@@ -68,25 +74,35 @@ export default function RentTrendsChart() {
         </select>
       </div>
 
-      {/* Line Chart */}
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart
-          data={filteredData}
-          margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
+      {/* Animated Chart Transition */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selectedNeighborhood} // Ensures animation happens when switching data
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 20 }}
+          transition={{ duration: 0.5 }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" stroke="#8884d8" />
-          <YAxis />
-          <Tooltip />
-          <Line
-            type="monotone"
-            dataKey="price"
-            stroke="#82ca9d"
-            strokeWidth={3}
-            dot={{ r: 4 }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart
+              data={filteredData}
+              margin={{ top: 10, right: 30, left: 0, bottom: 10 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" stroke="#8884d8" />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="price"
+                stroke="#82ca9d"
+                strokeWidth={3}
+                dot={{ r: 4 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </motion.div>
+      </AnimatePresence>
+    </motion.div>
   );
 }
